@@ -2,6 +2,7 @@
 
 This repository contains the Windows executable `VideoHubHL.exe` for managing Blackmagic VideoHub presets.
 
+
 ## How to use
 
 1. Download `VideoHubHL.exe` from the [Releases](https://github.com/haeleng/Blackmagic-videohub-preset-tool/releases) page.
@@ -12,3 +13,6 @@ This repository contains the Windows executable `VideoHubHL.exe` for managing Bl
 
 - First release of the program.
 - Windows only.
+- Blackmagic VideoHub presets
+- VideoHub preset manager
+- Windows executable
