@@ -85,6 +85,7 @@ Date: [2025-09-10]
 
 
 #pragma comment(lib, "Ws2_32.lib")
+std::string version = "v1.0";
 namespace fs = std::filesystem;
 
 // --------------------- Data structure ---------------------
@@ -1340,7 +1341,7 @@ int main() {
     gVideoHubRead = false;
 
     while (choice != 0) {
-        std::cout << "\n--- Videohub Preset Manager ---\n";
+        std::cout << "\n--- Videohub Preset Manager --- " << version <<"\n";
         std::cout << "0 = Exit\n";
         std::cout << "1 = Read VideoHub\n";
         std::cout << "2 = Save to Preset with comment\n";
