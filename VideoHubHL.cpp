@@ -97,8 +97,8 @@ struct VideoHubState {
 };
 
 // --------------------- Hub connection ---------------------
-std::string hubIP = "192.168.1.248"; // Configurable VideoHub IP address 12x12
-//std::string hubIP = "172.20.5.247"; // Configurable VideoHub IP address 40x40
+//std::string hubIP = "192.168.1.248"; // Configurable VideoHub IP address 12x12
+std::string hubIP = "172.20.5.247"; // Configurable VideoHub IP address 40x40
 const int hubPort = 9990;            // TCP port of the VideoHub
 
 // Status variables
@@ -901,7 +901,6 @@ void SavePresetMenu(VideoHubState& state) {
 
     if (!fs::exists("presets")) fs::create_directory("presets");
 
-    // Vraag eerst of gebruiker echt een preset wil maken
     std::cout << "Do you want to create a new preset? (y/n, 0 = return): ";
     char confirm;
     std::cin >> confirm;
@@ -915,7 +914,6 @@ void SavePresetMenu(VideoHubState& state) {
         return;
     }
 
-    // Nu pas description en filename vragen
     std::cin.ignore(); // flush newline van std::cin
 
     std::cout << "Enter description for preset: ";
@@ -927,6 +925,18 @@ void SavePresetMenu(VideoHubState& state) {
     if (fname.empty()) fname = "preset";
 
     fname = "presets/" + fname + ".json";
+
+    // === Nieuw: check of bestand al bestaat ===
+    if (fs::exists(fname)) {
+        std::cout << "File '" << fname << "' already exists.\n";
+        std::cout << "Do you want to overwrite it? (y/n): ";
+        char overwrite;
+        std::cin >> overwrite;
+        if (overwrite != 'y' && overwrite != 'Y') {
+            std::cout << "Preset not saved. Returning...\n";
+            return;
+        }
+    }
 
     SavePreset(fname, state);
     std::cout << "Preset saved as " << fname << "\n";
